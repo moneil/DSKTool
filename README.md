@@ -23,7 +23,7 @@ Supports Data Source Key and Availability status for **single** User, Course, an
   </ul>
 <hr>
 
-#Installation
+# Installation
 
 Prerequisiites:
 
@@ -33,7 +33,7 @@ NOTE: Make certainn to store your Key and Secret as those will be required when 
 
 If you are intalling on Heroku yor work is nearly done - jump to the below 'Heroku' section. If installing on a local or remote server jump to the below 'Hosted' section.
 
-###Heroku
+### Heroku
 
 At this time the simplest way to install and run the DSKTOOL is to use this Heroku Deploy button:
 <center>
@@ -45,7 +45,7 @@ At this time the simplest way to install and run the DSKTOOL is to use this Hero
 You need a Heroku account but that may be created as part of the process. You may also post install optionally edit the service settings to keep youor service in sync with DSKTOOL git updates so that you are always running the latest production version!
 
 
-###Hosted
+### Hosted
 You may also install DSKTOOL on you local desktop system or remote server. You may leverage 
 
 #### Install Python 3.7.x
