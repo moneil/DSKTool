@@ -2,13 +2,25 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.shortcuts import render
 from django.urls import reverse
 from bbrest import BbRest
-from config import adict
 import jsonpickle
 import json
+import os
 
-KEY = adict['learn_rest_key']
-SECRET = adict['learn_rest_secret']
-LEARNFQDN = adict['learn_rest_fqdn']
+try:
+    #using config.py...
+    from config import adict
+
+    KEY = adict['learn_rest_key']
+    SECRET = adict['learn_rest_secret']
+    LEARNFQDN = adict['learn_rest_fqdn']
+
+except:
+    # Else use Heroku configs 
+    KEY = os.environ.get('APPLICATION_KEY', '')
+    SECRET = os.environ.get('APPLICATION_SECRET', '')
+    TARGET_URL = os.environ.get('BLACKBOARD_LEARN_INSTANCE', '')
+
+
 # Create your views here.
 
 def isup(request):
@@ -510,7 +522,8 @@ def get_auth_code(request):
     redirect_uri = reverse(get_access_token)
     absolute_redirect_uri = f"https://{request.get_host()}{redirect_uri}"
     # absolute_redirect_uri = request.build_absolute_uri(redirect_uri)
-    authcodeurl = bb.get_auth_url(redirect_uri=absolute_redirect_uri)
+    authcodeurl = bb.get_auth_url(scope="read write", redirect_uri=absolute_redirect_uri)
+
     print(f"AUTHCODEURL:{authcodeurl}")
     return HttpResponseRedirect(authcodeurl)
 
