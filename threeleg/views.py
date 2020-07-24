@@ -6,6 +6,7 @@ from bbrest import BbRest
 import jsonpickle
 import json
 import os
+import uuid
 
 
 try:
@@ -46,6 +47,10 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+def notauthorized(request):
+    context = {}
+    return render(request, 'notauthorized.html', context=context )
 
 def whoami(request):
     """View function for whoami page of site."""
@@ -524,8 +529,9 @@ def get_auth_code(request):
     # but not the protocol or host FQDN. We need to prepend those to get an absolute redirect uri.
     redirect_uri = reverse(get_access_token)
     absolute_redirect_uri = f"https://{request.get_host()}{redirect_uri}"
-    # absolute_redirect_uri = request.build_absolute_uri(redirect_uri)
-    authcodeurl = bb.get_auth_url(redirect_uri=absolute_redirect_uri)
+    state = str(uuid.uuid4())
+    request.session['state'] = state
+    authcodeurl = bb.get_auth_url(redirect_uri=absolute_redirect_uri, state=state)
 
     print(f"AUTHCODEURL:{authcodeurl}")
     return HttpResponseRedirect(authcodeurl)
@@ -542,6 +548,14 @@ def get_access_token(request):
     # Next, get the code parameter value from the request
     redirect_uri = reverse(get_access_token)
     absolute_redirect_uri = f"https://{request.get_host()}{redirect_uri}"
+
+    state = request.GET.get('state', default= "NOSTATE")
+    print(f'GOT BACK state: {state}')
+    stored_state = request.session.get('state')
+    print(f'STORED STATE: {stored_state}')
+    if (stored_state != state):
+        return HttpResponseRedirect(reverse('notauthorized'))
+
     code =  request.GET.get('code', default = None)
     if (code == None):
         exit()

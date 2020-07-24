@@ -48,6 +48,7 @@ stevedore==2.0.1
 tqdm==4.47.0
 tzlocal==2.1
 urllib3==1.25.8
+uuid==1.30
 virtualenv==20.0.25
 virtualenv-clone==0.5.4
 virtualenvwrapper==4.8.4
