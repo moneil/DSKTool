@@ -11,6 +11,9 @@ SECRET = adict['learn_rest_secret']
 LEARNFQDN = adict['learn_rest_fqdn']
 # Create your views here.
 
+def isup(request):
+    return render(request, 'isup.html')
+    
 def index(request):
     """View function for home page of site."""
 
