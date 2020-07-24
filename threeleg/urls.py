@@ -11,5 +11,6 @@ urlpatterns = [
     path('getusers', views.getusers, name='getusers'),
     path('get_auth_code', views.get_auth_code, name='get_auth_code'),
     path('get_access_token', views.get_access_token, name='get_access_token'),
-    path('learnlogout', views.learnlogout, name='learnlogout')
+    path('learnlogout', views.learnlogout, name='learnlogout'),
+    path('notauthorized', views.notauthorized, name='notauthorized')
 ]
