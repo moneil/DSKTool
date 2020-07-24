@@ -6,7 +6,7 @@ This tool may be run on youur desktop, on a remote server, or in the cloud on a 
 
 The DSKTOOL uses 3LO and as such requires a Learn account and use is further restricted to System Admin users only.
 
-The DSKTOOL may be run in various free or lowcost environments.
+The DSKTOOL may be run in various free or low-cost environments.
 
 **Note**: This is an open source community project and *is not supported or sponsored by Blackboard Inc.*
 
