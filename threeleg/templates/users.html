@@ -1,29 +1,30 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Search for Course or Oganization</h1>
-<!-- SEARCH DIV -->
-<div name="courseSearchForm" id="courseSearchForm">
+<h1>Search for a User</h1>
+<!-- SEARCH DIVS -->
+<div name="userSearchForm" id="userSearchForm">
   <p>
-  Enter Text in the textfield to search. (All searches are equal to)
+  Enter Text in the textfield to search. All searches are "equal to".
   </p>
-  <form id="searchCourse" action="/threeleg/courses">
+  <form id="searchUser" action="/threeleg/users">
     {% csrf_token %}
+    <input type="hidden" id="task" name="task" value="search">
     <select name="searchBy" id="searchBy">
       <option value="externalId">External Id</option>
-      <option value="primaryId">Primary Id</option>
-      <option value="courseId">Course/Organization Id</option>
-      <!-- <option value="DSK">Data Source Key</option> -->
+      <option value="userName">Username</option>
+      <!-- <option value="givenName">Given Name</option> -->
+      <!-- <option valxue="familyName">Family Name</option> -->
+      <!-- <option value="DSK">Data Source  </option> -->
     </select>
     &nbsp;
     <input type="text" id="searchValue" name="searchValue"></br>
-      <div style="text-align:right; width:100%; padding:0;">
-        <input id="submitCourseSearch" type="submit" value="Search"/>
-      </div>
-    <input type="hidden" id="task" name="task" value="search">
+    <div style="text-align:right; width:100%; padding:0;">
+      <input type="submit" value="Search"/>
+    </div>
   </form>
 </div>
-<!-- END SEARCH DIV -->
+<!-- END SEARCH DIVS -->
 
 <!-- ERROR DIV -->
 <div id="error" style="display:none">
@@ -33,56 +34,51 @@
 </div>
 <!-- END ERROR DIV -->
 
-
 <!-- PROCESS REQUEST (UPDATE) BLOCK -->
 <div id="processBlock" style="display:none">
-  <form id=processSelections action="/threeleg/courses">
-    {% csrf_token %}
+  <form id=processSelections action="/threeleg/users">
     <input type="hidden" id="task" name="task" value="process">
-    <input type="hidden" id="searchBy" name="searchBy" value={{ course_json.searchBy }}>
-    <input type="hidden" id="searchValue" name="searchValue" value={{ course_json.searchValue }}>
+    <input type="hidden" id="searchBy" name="searchBy" value={{ user_json.searchBy }}>
+    <input type="hidden" id="searchValueUsr" name="searchValueUsr" value={{ user_json.searchValueUsr }}>
+    {% csrf_token %}
     <div id="searchResult" style="display:none">
       <hr>
       <h3>Records Available to Update</h3>    
       <p>Selecting a row readys it for processing.</p>
-      {% if course_json %}
+      {% if user_json %}
       <table>
         <thead>
           <tr>
             <th style="padding:10px" valign="top"></th>
             <th style="padding:10px" valign="top">Available</th>
-            <th style="padding:10px" valign="top">Service Level</th>
             <th style="padding:10px" valign="top">External Id</th>
-            <th style="padding:10px" valign="top">Course Id</th>
-            <th style="padding:10px" valign="top">Course Name</th>
+            <th style="padding:10px" valign="top">Username</th>
+            <th style="padding:10px" valign="top">First Name</th>
+            <th style="padding:10px" valign="top">Middle Name</th>
+            <th style="padding:10px" valign="top">Last Name</th>
+            <th style="padding:10px" valign="top">Email</th>
             <th style="padding:10px" valign="top">Data Source</th>
             <th style="padding:10px" valign="top">Date Created</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td styl="padding:10px;text-align:center"><input type="checkbox" name=processMembership checked value="{{ member_json.id }}" disabled></td>
-            <td style="padding:10px">{{course_json.availability.available}}</td>
-            <td style="padding:10px">
-              {% if course_json %} 
-                {% if course_json.organization == 'true' %} 
-                  Organization 
-                {% else %} 
-                  Course 
-                {% endif %}
-              {% endif %} 
-            </td>
-            <td style="padding:10px">{{course_json.externalId}}</td>
-            <td style="padding:10px">{{course_json.courseId}}</td>
-            <td style="padding:10px">{{course_json.name}}</td>
-            <td style="padding:10px">{{course_json.dataSourceId}}</td>
-            <td style="padding:10px">{{course_json.created}}</td>
+            <td styl="padding:10px;text-align:center"><input type="checkbox" name=processMembership checked value="{{ user_json.id }}" disabled></td>
+            <td style="padding:10px">{{user_json.availability.available}}</td>
+            <td style="padding:10px">{{user_json.externalId}}</td>
+            <td style="padding:10px">{{user_json.userName}}</td>
+            <td style="padding:10px">{{user_json.name.given}}</td>
+            <td style="padding:10px">{{user_json.name.middle}}</td>
+            <td style="padding:10px">{{user_json.name.family}}</td>
+            <td style="padding:10px">{{user_json.contact.email}}</td>
+            <td style="padding:10px">{{user_json.dataSourceId}}</td>
+            <td style="padding:10px">{{user_json.created}}</td>
           </tr>
         </tbody>
       </table>
       {% endif %}
       <h6>details json:</h6>
-      {{ course_json }}
+      {{ user_json }}
       <hr>
     </div>
     <div id="multipleResults" style="display:none">
@@ -171,78 +167,71 @@
 <!-- RESULTS DIV -->
 <div id="results" style="display:none">
   <h3>Results:</h3>
-  {% if result_json %}
-      <table>
-        <thead>
-          <tr>
-            <th style="padding:10px" valign="top"></th>
-            <th style="padding:10px" valign="top">Available</th>
-            <th style="padding:10px" valign="top">Service Level</th>
-            <th style="padding:10px" valign="top">External Id</th>
-            <th style="padding:10px" valign="top">Course Id</th>
-            <th style="padding:10px" valign="top">Course Name</th>
-            <th style="padding:10px" valign="top">Data Source</th>
-            <th style="padding:10px" valign="top">Date Created</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:10px">{{result_json.availability.available}}</td>
-            <td style="padding:10px">
-              {% if result_json %} 
-                {% if result_json.organization == 'true' %} 
-                  Organization 
-                {% else %} 
-                  Course 
-                {% endif %}
-              {% endif %} 
-            </td>
-            <td style="padding:10px">{{result_json.externalId}}</td>
-            <td style="padding:10px">{{result_json.courseId}}</td>
-            <td style="padding:10px">{{result_json.name}}</td>
-            <td style="padding:10px">{{result_json.dataSourceId}}</td>
-            <td style="padding:10px">{{result_json.created}}</td>
-          </tr>
-        </tbody>
-      </table>
-      {% endif %}
+  <table>
+    <thead>
+      <tr>
+        <th style="padding:10px" valign="top">Available</th>
+        <th style="padding:10px" valign="top">External Id</th>
+        <th style="padding:10px" valign="top">Username</th>
+        <th style="padding:10px" valign="top">First Name</th>
+        <th style="padding:10px" valign="top">Middle Name</th>
+        <th style="padding:10px" valign="top">Last Name</th>
+        <th style="padding:10px" valign="top">Email</th>
+        <th style="padding:10px" valign="top">Data Source</th>
+        <th style="padding:10px" valign="top">Date Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:10px">{{result_json.availability.available}}</td>
+        <td style="padding:10px">{{result_json.externalId}}</td>
+        <td style="padding:10px">{{result_json.userName}}</td>
+        <td style="padding:10px">{{result_json.name.given}}</td>
+        <td style="padding:10px">{{result_json.name.middle}}</td>
+        <td style="padding:10px">{{result_json.name.family}}</td>
+        <td style="padding:10px">{{result_json.contact.email}}</td>
+        <td style="padding:10px">{{result_json.dataSourceId}}</td>
+        <td style="padding:10px">{{result_json.created}}</td>
+      </tr>
+    </tbody>
+  </table>
   <h6>details json:</h6>
   {{ result_json }}
 </div>
 <!-- END RESULTS DIV -->
 
 <script>
-  function setIsProcessable() {
-    if ((document.getElementById('isUpdateRequired1').checked == true) &&
-        (document.getElementById('isAvailabilityUpdateRequired1').checked == true || 
-         document.getElementById('isDataSourceKeyUpdateRequired1').checked == true)) {
-      document.getElementById('processSubmit').disabled=false;
-    } else {
-      document.getElementById('processSubmit').disabled=true;
-    }
+function setIsProcessable() {
+  if ((document.getElementById('isUpdateRequired1').checked == true) &&
+      (document.getElementById('isAvailabilityUpdateRequired1').checked == true || 
+       document.getElementById('isDataSourceKeyUpdateRequired1').checked == true)) {
+    document.getElementById('processSubmit').disabled=false;
+  } else {
+    document.getElementById('processSubmit').disabled=true;
   }
-  
-  function showElement(showme) {
-    document.getElementById(showme).style.display = "inline";
-  }
-  function hideElement(hideme) {
-    document.getElementById(hideme).style.display = "none";
-  }
-  
-  {% if error_json %}
-    showElement('error')
-  {% endif %}
-  
-  {% if result_json %}
-    showElement('results')
-  {% endif %}
-  
-  {% if course_json %}
-    showElement('processBlock')
-    showElement('searchResult')
-    showElement('searchUpdate')  
-  {% endif %}
-  
-  </script>
-  
-  {% endblock %}
+}
+
+function showElement(showme) {
+  document.getElementById(showme).style.display = "inline";
+}
+function hideElement(hideme) {
+  document.getElementById(hideme).style.display = "none";
+}
+
+{% if error_json %}
+  showElement('error')
+{% endif %}
+
+{% if result_json %}
+  showElement('results')
+{% endif %}
+
+{% if user_json %}
+  showElement('processBlock')
+  showElement('searchResult')
+  showElement('searchUpdate')  
+{% endif %}
+
+</script>
+
+{% endblock %}

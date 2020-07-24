@@ -1,16 +1,29 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Web Learn Home</h1>
-  <p>Welcome to Web Learn, a web application based on the Django tutorial at <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django"><em>Mozilla Developer Network</em></a></p>
-  Web Learn demonstrates making REST API calls to Blackboard Learn(tm) from the Django web framework,
-  using both 2-legged authentication and 3-legged authentication.
-  <h2>Dynamic content</h2>
-  <p>Here, we made the only possible unauthenticated REST request 
-    /learn/api/public/v1/system/version to the following Blackboard Learn server
-    with the result shown below:</p>
+  <h1>OSCELOT DSK Tool Home</h1>
+  <p>Welcome to the OSCELOT DSK Tool, a REST-based version of the original York DSK Tool</p>
+  <Thead></Thead>The OSCELOT DSK Tool is a secure cloud-based data source and availability managment tool that utilizes 3-legged authentication.
+  <p></p>
+  <h2>Version Information</h2>
+  Documentation available via the project site located at:<p><a href='https://github.com'>https://github.com</a></p>
+<h3>v1.0 (released 07/30/2020)</h3>
+<ul>
+  <li>Three Legged OAuth to limit access to only System Administrators</li>
+  <li>Availabitity and DSK managment for Users</li>
+  </ul>
+  <h4>ToDo:</h4>
+  <ul>
+    <li>add search and update for multiple items</li>
+    <li>add logging support</li>
+    <li>add date timeboxing</li>
+    <li>add bootstrap</li>
+  </ul>
+  <hr>
+  <h4>Your System Information:</h4>
   <ul>
     <li><strong>Learn Server:</strong> {{ learn_server }}</li>
     <li><strong>Version JSON:</strong> {{ version_json }}</li>
+<!--     <li><strong>Access Token:</strong> {{ access_token }}</li> -->  
   </ul>
 {% endblock %}

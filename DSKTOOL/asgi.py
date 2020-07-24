@@ -1,5 +1,5 @@
 """
-ASGI config for weblearn project.
+ASGI config for DSKTOOL project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'weblearn.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DSKTOOL.settings')
 
 application = get_asgi_application()

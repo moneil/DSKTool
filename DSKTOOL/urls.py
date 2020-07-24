@@ -1,4 +1,4 @@
-"""weblearn URL Configuration
+"""DSKTOOL URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -23,9 +23,9 @@ urlpatterns = [
 # Use include() to add paths from the twoleg application 
 from django.urls import include
 
-urlpatterns += [
-    path('twoleg/', include('twoleg.urls')),
-]
+# urlpatterns += [
+#     path('twoleg/', include('twoleg.urls')),
+# ]
 
 urlpatterns += [
     path('threeleg/', include('threeleg.urls')),
@@ -34,7 +34,7 @@ urlpatterns += [
 #Add URL maps to redirect the base URL, /, to our twoleg application
 from django.views.generic import RedirectView
 urlpatterns += [
-    path('', RedirectView.as_view(url='twoleg/', permanent=True)),
+    path('', RedirectView.as_view(url='threeleg/', permanent=True)),
 ]
 
 # Use static() to add url mapping to serve static files during development (only)
