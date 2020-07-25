@@ -1,1 +1,1 @@
-web: gunicorn DSKTOOL:app
+web: gunicorn threeleg.wsgi --log-file -
