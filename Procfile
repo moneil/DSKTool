@@ -1,1 +1,0 @@
-web: gunicorn threeleg:app --log-file -
