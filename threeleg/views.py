@@ -231,7 +231,7 @@ def users(request):
         bb_json = jsonpickle.encode(bb)
         print('pickled BbRest putting it on session')
         request.session['bb_json'] = bb_json
-        request.session['target_view'] = 'courses'
+        request.session['target_view'] = 'users'
         return HttpResponseRedirect(reverse('get_auth_code'))
     else:
         print('got BbRest from session')
