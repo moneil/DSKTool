@@ -1,1 +1,1 @@
-web: gunicorn threeleg.wsgi --log-file -
+web: gunicorn threeleg:app --log-file -
