@@ -14,10 +14,12 @@ The DSKTOOL may be run in various free or low-cost environments.
 ### v1.0 (07/24/2020)
 <ul>
   <li> Supports Data Source Key and Availability status for **single** User, Course, and Enrollment Records. </li>
+  <li> Supports <b>non-SSL</b> local python and Docker Desktop deployments
 </ul>
 
 **ToDo:**
   <ul>
+    <li>add SSL support to Docker deployment (coming soon!!)</li>
     <li>add search and update for multiple records</li>
     <li>add logging support</li>
     <li>add date timeboxing</li>
