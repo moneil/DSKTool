@@ -10,9 +10,11 @@ The DSKTOOL may be run in various free or low-cost environments.
 
 **Note**: This is an open source community project and *is not supported or sponsored by Blackboard Inc.*
 
-##Release Notes
-###v1.0 (07/24/2020)
-Supports Data Source Key and Availability status for **single** User, Course, and Enrollment Records.
+## Release Notes
+### v1.0 (07/24/2020)
+<ul>
+  <li> Supports Data Source Key and Availability status for **single** User, Course, and Enrollment Records. </li>
+</ul>
 
 **ToDo:**
   <ul>
