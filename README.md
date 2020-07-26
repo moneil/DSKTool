@@ -17,7 +17,6 @@ Supports Data Source Key and Availability status for **single** User, Course, an
 **ToDo:**
   <ul>
     <li>add search and update for multiple records</li>
-    <li>add Docker support</li>
     <li>add logging support</li>
     <li>add date timeboxing</li>
   </ul>
@@ -29,26 +28,28 @@ Prerequisiites:
 
 You ***must*** have registered an application in your Developer Portal ([https://developer.blackboard.com](https://developer.blackboard.com)) account and added it to your Learn instance. Instructions for how to do this may be found on the [Blackboard Help site](https://help.blackboard.com)
 
-NOTE: Make certainn to store your Key and Secret as those will be required when you install the application.
+NOTE: Make certain to store your Key and Secret as those will be required when you install the application.
 
-If you are intalling on Heroku yor work is nearly done - jump to the below 'Heroku' section. If installing on a local or remote server jump to the below 'Hosted' section.
+SSL: DSKTOOL should be made available on the public internet with a valid SSL certificate.  For development and runtime on a local system, you may use ngrok to forward from a registered domain to the localhost:8000 with:
 
-### Heroku
+`~/ngrok tls -region=us -hostname=<registered_fqdn> -key ~/mydomain.rsaprivatekey.pem -crt ~/mydomain.fullchaincert.pem 8000
+`
 
-At this time the simplest way to install and run the DSKTOOL is to use this Heroku Deploy button:
-<center>
-<a href="https://heroku.com/deploy">
-  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
-</a>
-</center>
+### Docker
 
-You need a Heroku account but that may be created as part of the process. You may also post install optionally edit the service settings to keep youor service in sync with DSKTOOL git updates so that you are always running the latest production version!
+1. Install Docker Desktop : https://www.docker.com/products/docker-desktop
+1. From this project copy the docker-compose.yaml file to a directory of your choosing
+1. Open a terminal and enter:
+1. docker-compose up -d
+1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
+1. Browse to http://localhost to view the http site.
+
 
 
 ### Hosted
 You may also install DSKTOOL on you local desktop system or remote server. You may leverage 
 
-#### Install Python 3.7.x
+#### Install Python 3.8.x
 
 See https://docs.python.org/3.7/using/index.html
 
@@ -73,11 +74,6 @@ adict = {
 
 
 #### To Run
-
-* **NOTE:** The Django webserver should be made available on the public internet with a valid SSL certificate.  For development and runtime on his local system, the author uses ngrok to forward from the domain www.avinyet.com to the localhost:8000 with:
-
-`~/ngrok tls -region=us -hostname=www.avinyet.com -key ~/avinet.rsaprivatekey.pem -crt ~/avinet.fullchaincert.pem 8000
-`
 
 * **After cloning from github** run `pip install -r requirements.txt` . Next run `python manage.py migrate` to apply the migrations. And last, start the server with `python manage.py runserver`
 
