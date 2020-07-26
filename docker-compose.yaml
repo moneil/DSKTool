@@ -12,10 +12,11 @@ services:
         environment:
             DJANGO_DEBUG: "True" #May set to False
             #https://miniwebtool.com/django-secret-key-generator/
-            #SECRET_KEY: goms&lvgev4iz-xuw&qj9lgm7#+&)#+1w%$if@p_iqa2&^z8&a
-            #DJANGO_ALLOWED_HOSTS: "['127.0.0.1', 'localhost']"
-            #DJANGO_LOGLEVEL:
-            #BLACKBOARD_LEARN_INSTANCE: 
+            SECRET_KEY: <your djanngo secret> #eventually use docker secrets...
+            DJANGO_ALLOWED_HOSTS: "['127.0.0.1', 'localhost']"
+            BLACKBOARD_LEARN_INSTANCE: <your Learn FQDN no protocol e.g. my.learn.server.com>
+            APPLICATION_KEY: <your application key>
+            APPLICATIONN_SECRET: <your application secret
 
 
 networks:
