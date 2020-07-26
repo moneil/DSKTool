@@ -14,9 +14,9 @@ services:
             #https://miniwebtool.com/django-secret-key-generator/
             SECRET_KEY: <your djanngo secret> #eventually use docker secrets...
             DJANGO_ALLOWED_HOSTS: "['127.0.0.1', 'localhost']"
-            BLACKBOARD_LEARN_INSTANCE: <your Learn FQDN no protocol e.g. my.learn.server.com>
-            APPLICATION_KEY: <your application key>
-            APPLICATIONN_SECRET: <your application secret
+            BLACKBOARD_LEARN_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
+            APPLICATION_KEY: "your application key"
+            APPLICATIONN_SECRET: "your application secret"
 
 
 networks:
