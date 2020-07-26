@@ -13,5 +13,4 @@ RUN ls -a
 # start server
 EXPOSE 8000
 
-#CMD ["python", "manage.py", "runserver"]
 CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "DSKTOOL.wsgi:application"]

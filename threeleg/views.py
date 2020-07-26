@@ -13,16 +13,16 @@ try:
     print("using config.py...")
     from config import adict
 
-
     KEY = adict['learn_rest_key']
     SECRET = adict['learn_rest_secret']
     LEARNFQDN = adict['learn_rest_fqdn']
 
 except:
-    print("using Heroku env settings...")
-    KEY = os.environ.get('APPLICATION_KEY', '')
-    SECRET = os.environ.get('APPLICATION_SECRET', '')
-    TARGET_URL = os.environ.get('BLACKBOARD_LEARN_INSTANCE', '')
+    print("using docker-compose env settings...")
+    
+    KEY = os.environ['APPLICATION_KEY']
+    SECRET = os.environ['APPLICATION_SECRET']
+    LEARNFQDN = os.environ['BLACKBOARD_LEARN_INSTANCE']
 
 
 # Create your views here.
