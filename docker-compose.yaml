@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+    DSKTOOL:
+        container_name: DSKTOOL
+        image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:0.1
+        ports:
+            - "80:8000"
+        networks:
+            - dsktool
+        restart: unless-stopped
+        environment:
+            DJANGO_DEBUG: "True" #May set to False
+            #https://miniwebtool.com/django-secret-key-generator/
+            #SECRET_KEY: goms&lvgev4iz-xuw&qj9lgm7#+&)#+1w%$if@p_iqa2&^z8&a
+            #DJANGO_ALLOWED_HOSTS: "['127.0.0.1', 'localhost']"
+            #DJANGO_LOGLEVEL:
+            #BLACKBOARD_LEARN_INSTANCE: 
+
+
+networks:
+    dsktool:
+        driver: bridge
