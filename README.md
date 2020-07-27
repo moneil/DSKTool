@@ -56,7 +56,7 @@ Docker is likely the easiest installation at this time as it does not require an
 1. Browse to http://localhost to view the http site.
 
 ### TLS
-After performing the above test you can enable TLS to your local computer.
+After performing the above test you can enable TLS to your local computer. 
 
 1. Go to [https://ngrok.io](https://ngrok.com/download)
 2. Sign up for a free account if you don't already have one and login
@@ -65,6 +65,7 @@ After performing the above test you can enable TLS to your local computer.
 5. Expand ngrok into your applications folder
 6. In a terminal cd to your ngrok directory and enter `$ ./ngrok authtoken <your authtoken>`
 5. Start a tunnel to the DSKTOOL Port (8000): `$ ./ngrok http 8000`
+Do not close your terminal - it must stay open while you are using the TLS connection. 
 
 You should see something like this:
 
@@ -90,6 +91,9 @@ You should see something like this:
 >&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;0.00
 
 The text in bold indicates the URL you shoud use for securely accessing and using the DSKTOOL running on your system.
+
+**Note**: ngrok requires your terminal to be open while running. ngrok sessions do expire and will require restarting ngrok when they expire or after computer restarts etc. If ngrok is not running or has expired your browser will display the following: Tunnel `the original ngrok https url` not found. Just restart ngrok and use the new https url provided.
+
 
 ### Hosted
 You may also install DSKTOOL on you local desktop system or remote server. You may leverage 
