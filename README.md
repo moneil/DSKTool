@@ -92,7 +92,8 @@ You should see something like this:
 
 The text in bold indicates the URL you shoud use for securely accessing and using the DSKTOOL running on your system.
 
-**Note**: ngrok requires your terminal to be open while running. ngrok sessions do expire and will require restarting ngrok when they expire or after computer restarts etc. If ngrok is not running or has expired your browser will display the following: Tunnel `the original ngrok https url` not found. Just restart ngrok and use the new https url provided.
+**Note**: ngrok requires your terminal to be open while running. ngrok sessions do expire and will require restarting ngrok when they expire or after computer restarts etc. If ngrok is not running or has expired your browser will display the following: 
+`Tunnel the original ngrok https url not found`. Just restart ngrok and use the new https url provided.
 
 
 ### Hosted
