@@ -51,7 +51,15 @@ Docker is likely the easiest installation at this time as it does not require an
 
 1. Install Docker Desktop : [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 1. Download the above <a id="raw-url" href="https://raw.githubusercontent.com/moneil/DSKTool/master/docker-compose.yaml" download> docker-compose.yaml </a> file to a directory of your choosing
-1. Open a terminal and enter: `$ docker-compose up -d`
+2. Open the docker-compose.yaml file and edit the following:
+
+   BLACKBOARD\_LEARN\_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
+   
+   APPLICATION\_KEY: "your application key"
+   
+   APPLICATION\_SECRET: "your application secret"
+   
+4. Open a terminal and enter: `$ docker-compose up -d`
 1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
 1. Browse to http://localhost to view the http site.
 
@@ -92,8 +100,7 @@ You should see something like this:
 
 The text in bold indicates the URL you shoud use for securely accessing and using the DSKTOOL running on your system.
 
-**Note**: ngrok requires your terminal to be open while running. ngrok sessions do expire and will require restarting ngrok when they expire or after computer restarts etc. If ngrok is not running or has expired your browser will display the following: 
-`Tunnel the original ngrok https url not found`. Just restart ngrok and use the new https url provided.
+**Note**: ngrok requires your terminal to be open while running. ngrok sessions do expire and will require restarting ngrok when they expire or after computer restarts etc. If ngrok is not running or has expired your browser will display the following: Tunnel `the original ngrok https url` not found. Just restart ngrok and use the new https url provided.
 
 
 ### Hosted
