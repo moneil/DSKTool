@@ -12,9 +12,10 @@ services:
         restart: unless-stopped
         environment:
             DJANGO_DEBUG: "True" #May set to False
-            #https://miniwebtool.com/django-secret-key-generator/
-            SECRET_KEY: "secret from above generator" #eventually use docker secrets...
+            # if you are using a remote host add it to the below list:
             DJANGO_ALLOWED_HOSTS: 127.0.0.1 localhost .ngrok.io
+            # A django-secret-key-generator: https://djskgen.herokuapp.com             
+            DJANGO_SECRET_KEY: 'secret from above generator'
             BLACKBOARD_LEARN_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
             APPLICATION_KEY: "your application key"
             APPLICATION_SECRET: "your application secret"
