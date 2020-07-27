@@ -28,12 +28,25 @@ The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted 
 
 Prerequisiites:
 
-You ***must*** have registered an application in your Developer Portal ([https://developer.blackboard.com](https://developer.blackboard.com)) account and added it to your Learn instance. Instructions for how to do this may be found on the [Blackboard Help site](https://help.blackboard.com)
+You ***must*** have registered an application in your Developer Portal ([https://developer.blackboard.com](https://developer.blackboard.com)) account and added it to your Learn instance. 
 
 NOTE: Make certain to store your Key and Secret as those will be required when you install the application.
 
+### Learn
+1. On your Learn instance create a user 'dsktooluser' and assign them a low, to no, privileged Institution role - I used "staff" - you may create a specific role if you choose. Do not assign a System Role. 
+2. Navigate to the System Admin page and select the REST API Integrations link.
+3. Enter your Application Id into the Application Id field.
+2. Set the REST integration user to your 'dsktooluser'.
+1. Set Available to 'Yes'.
+1. Set End User Access to 'Yes'
+1. Set Authorized To Act As User to 'Service Default'.
+2. Click Submit.
+
+Learn is now ready proceed with the below Docker or Hosted installation.
+
 
 ### Docker
+Docker is likely the easiest installation at this time as it does not require any understanding of Python.
 
 1. Install Docker Desktop : [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 1. Download the above <a id="raw-url" href="https://raw.githubusercontent.com/moneil/DSKTool/master/docker-compose.yaml" download> docker-compose.yaml </a> file to a directory of your choosing
@@ -45,8 +58,8 @@ NOTE: Make certain to store your Key and Secret as those will be required when y
 After performing the above test you can enable TLS to your local computer.
 
 1. Go to [https://ngrok.io](https://ngrok.com/download)
-2. Sign up for an account if you don't already have one and login
-3. Download the installer for you system [https://ngrok.com/download](https://ngrok.com/download)
+2. Sign up for a free account if you don't already have one and login
+3. Download the installer for your system [https://ngrok.com/download](https://ngrok.com/download)
 4. Visit [https://dashboard.ngrok.com/get-started/setup](https://dashboard.ngrok.com/get-started/setup) and copy your authtoken
 5. Expand ngrok into your applications folder
 6. In a terminal cd to your ngrok directory and enter `$ ./ngrok authtoken <your authtoken>`
