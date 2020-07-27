@@ -54,19 +54,44 @@ Docker is likely the easiest installation at this time as it does not require an
 2. Open the docker-compose.yaml file and edit the following:
 
     ````
+    DJANGO_SECRET_KEY: 'secret from above generator'
+
     BLACKBOARD\_LEARN\_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
    
     APPLICATION\_KEY: "your application key"
 
     APPLICATIONN\_SECRET: "your application secret"
     ````
+   Note if you want to always run the latest image you may also edit: 
    
+   image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:1.0 
+   and replace 1.0 with the latest version indicated in this site's docker-compose.yaml file.
+
 4. Open a terminal, cd to the directory where you saved the docker-compose.yaml file and enter: `$ docker-compose up -d`
 
   If you changed the file name you would use `$ docker-compose -f <your filename> up -d`
   
 1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
-1. Browse to http://localhost to view the http site.
+1. Browse to http://localhost and click the whoami link to view the http site and ensure the site is functioning.
+
+#### Oopsies
+If for some reason you get an error loading the site there are a few things to check:
+
+1. Ensure the tool is properly installed in Learn
+2. Ensure you changed the DJANGO_SECRET_KEY and that it is enclosed by single quotes
+3. Refresh your DSKTOOL image by purging the current one:
+
+```
+    1. Using your terminal enter $ docker image ls
+       you should see something like this:
+       REPOSITORY                                   TAG   IMAGE ID
+       blackboardhub.ddns.net/bbdn/oscelot-dsktool  1.0   ec77fd2d0003
+       
+    2. run $ docker image rm ec77fd2d0003 substituting your image id
+       This deletes the cached image so when you run docker-compose next it will pull a fresh copy.
+```
+
+4. rerun docker-compose.yaml to pull the new image and deploy the container.
 
 ### TLS
 After performing the above test you can enable TLS to your local computer. 
