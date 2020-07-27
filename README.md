@@ -6,7 +6,7 @@ This tool may be run on your desktop, on a remote server, or in the cloud on a P
 
 The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted based on Learn account privileges (only Users with Admin accounts may post record updates).
 
-**Note**: This is an open source community project and *is not supported or sponsored by Blackboard Inc.*
+**Note**: This is an open source community project and *is not supported or sponsored by Blackboard Inc.*. Pull requests welcome! Make a fork and share your work back to the project.
 
 ## Release Notes
 ### v1.0 (07/26/2020)
@@ -18,6 +18,7 @@ The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted 
 
 **ToDo:**
   <ul>
+    <li>clean up/simplify project layout</li>
     <li>add search and update for multiple records</li>
     <li>add logging support</li>
     <li>add date timeboxing</li>
