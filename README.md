@@ -36,7 +36,7 @@ NOTE: Make certain to store your Key and Secret as those will be required when y
 ### Docker
 
 1. Install Docker Desktop : [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
-1. Download the above <a href="https://github.com/moneil/DSKTool/blob/master/docker-compose.yaml" download> docker-compose.yaml </a> file to a directory of your choosing
+1. Download the above <a id="raw-url" href="https://raw.githubusercontent.com/moneil/DSKTool/master/docker-compose.yaml" download> docker-compose.yaml </a> file to a directory of your choosing
 1. Open a terminal and enter: `$ docker-compose up -d`
 1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
 1. Browse to http://localhost to view the http site.
