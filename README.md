@@ -12,7 +12,7 @@ The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted 
 ### v1.0 (07/26/2020)
 <ul>
   <li> Supports Data Source Key and Availability status for **single** User, Course, and Enrollment Records. </li>
-  <li> Supports <b>non-TLS (SSL)</b> local python and Docker Desktop deployments
+  <li> Supports non-TLS (SSL) local python and Docker Desktop deployments
   <li> Supports TLS (SSL) deployments (see below TLS section)
 </ul>
 
@@ -49,7 +49,7 @@ After performing the above test you can enable TLS to your local computer.
 3. Download the installer for you system [https://ngrok.com/download](https://ngrok.com/download)
 4. Visit [https://dashboard.ngrok.com/get-started/setup](https://dashboard.ngrok.com/get-started/setup) and copy your authtoken
 5. Expand ngrok into your applications folder
-6. In a terminal enter cd to your ngrok directory and enter `$ ./ngrok authtoken <your authtoken>`
+6. In a terminal cd to your ngrok directory and enter `$ ./ngrok authtoken <your authtoken>`
 5. Start a tunnel to the DSKTOOL Port (8000): `$ ./ngrok http 8000`
 
 You should see something like this:
