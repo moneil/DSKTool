@@ -53,13 +53,18 @@ Docker is likely the easiest installation at this time as it does not require an
 1. Download the above <a id="raw-url" href="https://raw.githubusercontent.com/moneil/DSKTool/master/docker-compose.yaml" download> docker-compose.yaml </a> file to a directory of your choosing
 2. Open the docker-compose.yaml file and edit the following:
 
-   BLACKBOARD\_LEARN\_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
+    ````
+    BLACKBOARD\_LEARN\_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
    
-   APPLICATION\_KEY: "your application key"
+    APPLICATION\_KEY: "your application key"
+
+    APPLICATIONN\_SECRET: "your application secret"
+    ````
    
-   APPLICATION\_SECRET: "your application secret"
-   
-4. Open a terminal and enter: `$ docker-compose up -d`
+4. Open a terminal, cd to the directory where you saved the docker-compose.yaml file and enter: `$ docker-compose up -d`
+
+  If you changed the file name you would use `$ docker-compose -f <your filename> up -d`
+  
 1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
 1. Browse to http://localhost to view the http site.
 
