@@ -24,14 +24,25 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
+try:
+    print("using config.py...")
+    from config import adict
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = adict['django_secret_key']
+    #ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.ngrok.io''.herokuapp.com','[::1]']
+    ALLOWED_HOSTS = adict['django_allowed_hosts'].split(" ")
+
+except: #no config file...load from env
+    SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+    ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.ngrok.io''.herokuapp.com','[::1]']
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
 
 
 # Application definition
