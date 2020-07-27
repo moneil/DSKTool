@@ -1,11 +1,12 @@
-version: "3"
+version: "3.3"
 
 services:
+    
     DSKTOOL:
         container_name: DSKTOOL
-        image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:0.1
+        image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:1.0
         ports:
-            - "80:8000"
+            - "8000:8000"
         networks:
             - dsktool
         restart: unless-stopped
@@ -13,11 +14,10 @@ services:
             DJANGO_DEBUG: "True" #May set to False
             #https://miniwebtool.com/django-secret-key-generator/
             SECRET_KEY: <your djanngo secret> #eventually use docker secrets...
-            DJANGO_ALLOWED_HOSTS: "['127.0.0.1', 'localhost']"
+            DJANGO_ALLOWED_HOSTS: 127.0.0.1 localhost .ngrok.io
             BLACKBOARD_LEARN_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
             APPLICATION_KEY: "your application key"
             APPLICATIONN_SECRET: "your application secret"
-
 
 networks:
     dsktool:

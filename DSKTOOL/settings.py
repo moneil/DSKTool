@@ -30,7 +30,8 @@ SECRET_KEY = 'ms87aks=o_e*^aznlcn+#xy^%u47ymryc23zb$git+7yp8x4^('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapp.com','[::1]']
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.ngrok.io''.herokuapp.com','[::1]']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
