@@ -13,11 +13,11 @@ services:
         environment:
             DJANGO_DEBUG: "True" #May set to False
             #https://miniwebtool.com/django-secret-key-generator/
-            SECRET_KEY: <your djanngo secret> #eventually use docker secrets...
+            SECRET_KEY: "gd4owr7x-()dv)gh!2s-un9!y-6bb(iv!m2n0!=c32mt0+xbv!" #eventually use docker secrets...
             DJANGO_ALLOWED_HOSTS: 127.0.0.1 localhost .ngrok.io
             BLACKBOARD_LEARN_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
             APPLICATION_KEY: "your application key"
-            APPLICATIONN_SECRET: "your application secret"
+            APPLICATION_SECRET: "your application secret"
 
 networks:
     dsktool:
