@@ -13,6 +13,13 @@ The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted 
 **Note**: This is an open source community project and *is not supported or sponsored by Blackboard Inc.*. Pull requests welcome! Make a fork and share your work back to the project.
 
 ## Release Notes
+### v1.0.1 (07/27/2020)
+<ul>
+  <li> Fixed django issues which were preventing correct loading </li>
+  <li> Updated installation notes</li>
+</ul>
+
+
 ### v1.0 (07/26/2020)
 <ul>
   <li> Supports Data Source Key and Availability status for **single** User, Course, and Enrollment Records. </li>
