@@ -118,7 +118,7 @@ Docker is likely the easiest installation at this time as it does not require an
   If you changed the file name you would use `$ docker-compose -f <your filename> up -d`
   
 1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
-1. Browse to http://localhost and click the whoami link to view the http site and ensure the site is functioning.
+1. Browse to https URL provided by ngrok and click the whoami link to view the https site and ensure the site is functioning.
 
 #### Oopsies
 If for some reason you get an error loading the site there are a few things to check:
