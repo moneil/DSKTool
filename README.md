@@ -49,56 +49,11 @@ NOTE: Make certain to store your Key and Secret as those will be required when y
 
 Learn is now ready proceed with the below Docker or Hosted installation.
 
+### Install on Your Local Computer...
+First you will install support for TLS using ngrok, then you will install Docker and run your edited version of the project docker-compose.yaml file.
 
-### Docker
-Docker is likely the easiest installation at this time as it does not require any understanding of Python.
-
-1. Install Docker Desktop : [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
-1. Download the above <a id="raw-url" href="https://raw.githubusercontent.com/moneil/DSKTool/master/docker-compose.yaml" download> docker-compose.yaml </a> file to a directory of your choosing
-2. Open the docker-compose.yaml file and edit the following:
-
-    ````
-    DJANGO_SECRET_KEY: 'secret from above generator'
-
-    BLACKBOARD\_LEARN\_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
-   
-    APPLICATION\_KEY: "your application key"
-
-    APPLICATIONN\_SECRET: "your application secret"
-    ````
-   Note if you want to always run the latest image you may also edit: 
-   
-   image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:1.0 
-   and replace 1.0 with the latest version indicated in this site's docker-compose.yaml file.
-
-4. Open a terminal, cd to the directory where you saved the docker-compose.yaml file and enter: `$ docker-compose up -d`
-
-  If you changed the file name you would use `$ docker-compose -f <your filename> up -d`
-  
-1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
-1. Browse to http://localhost and click the whoami link to view the http site and ensure the site is functioning.
-
-#### Oopsies
-If for some reason you get an error loading the site there are a few things to check:
-
-1. Ensure the tool is properly installed in Learn
-2. Ensure you changed the DJANGO_SECRET_KEY and that it is enclosed by single quotes
-3. Refresh your DSKTOOL image by purging the current one:
-
-```
-    1. Using your terminal enter $ docker image ls
-       you should see something like this:
-       REPOSITORY                                   TAG   IMAGE ID
-       blackboardhub.ddns.net/bbdn/oscelot-dsktool  1.0   ec77fd2d0003
-       
-    2. run $ docker image rm ec77fd2d0003 substituting your image id
-       This deletes the cached image so when you run docker-compose next it will pull a fresh copy.
-```
-
-4. rerun docker-compose.yaml to pull the new image and deploy the container.
-
-### TLS
-After performing the above test you can enable TLS to your local computer. 
+#### TLS
+TLS support is provided by ngrok which provides a TSL tunnel to the DSKTOOL running on to your local computer. 
 
 1. Go to [https://ngrok.io](https://ngrok.com/download)
 2. Sign up for a free account if you don't already have one and login
@@ -135,6 +90,62 @@ You should see something like this:
 The text in bold indicates the URL you shoud use for securely accessing and using the DSKTOOL running on your system.
 
 **Note**: ngrok requires your terminal to be open while running. ngrok sessions do expire and will require restarting ngrok when they expire or after computer restarts etc. If ngrok is not running or has expired your browser will display the following: Tunnel `the original ngrok https url` not found. Just restart ngrok and use the new https url provided.
+
+
+### Docker
+Docker is likely the easiest installation at this time as it does not require any understanding of Python.
+
+1. Install Docker Desktop : [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
+1. Download the above <a id="raw-url" href="https://raw.githubusercontent.com/moneil/DSKTool/master/docker-compose.yaml" download> docker-compose.yaml </a> file to a directory of your choosing
+2. Open the docker-compose.yaml file and edit the following:
+
+    ````
+    DJANGO_SECRET_KEY: 'secret from above generator'
+
+    BLACKBOARD\_LEARN\_INSTANCE: "your Learn FQDN no protocol e.g. my.learn.server.com"
+   
+    APPLICATION\_KEY: "your application key"
+
+    APPLICATIONN\_SECRET: "your application secret"
+    ````
+   Note if you want to always run the latest image you may also edit: 
+   
+   image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:1.0 
+   and replace 1.0 with the latest version indicated in this site's docker-compose.yaml file.
+
+4. Open a terminal, cd to the directory where you saved the docker-compose.yaml file and enter: `$ docker-compose up -d`
+
+  If you changed the file name you would use `$ docker-compose -f <your filename> up -d`
+  
+1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
+1. Browse to http://localhost and click the whoami link to view the http site and ensure the site is functioning.
+
+#### Oopsies
+If for some reason you get an error loading the site there are a few things to check:
+
+* Ensure the tool is properly installed in Learn
+* Ensure you changed the DJANGO_SECRET_KEY and that it is enclosed by single quotes this is important.
+* If you see an error similar to the one below - check your compose file syntax - esp those gnnarly double and single quotes:
+
+>     ERROR: yaml.parser.ParserError: while parsing a block mapping
+>         in "./docker-compose.yaml", line 14, column 13
+>     expected <block end>, but found '<scalar>'
+>         in "./docker-compose.yaml", line 16, column 34
+
+
+* Refresh your DSKTOOL image by purging the current one:
+
+```
+    1. Using your terminal enter $ docker image ls
+       you should see something like this:
+       REPOSITORY                                   TAG   IMAGE ID
+       blackboardhub.ddns.net/bbdn/oscelot-dsktool  1.0   ec77fd2d0003
+       
+    2. run $ docker image rm ec77fd2d0003 substituting your image id
+       This deletes the cached image so when you run docker-compose next it will pull a fresh copy.
+```
+
+Rerun docker-compose.yaml to pull the new image and deploy the container.
 
 
 ### Hosted
