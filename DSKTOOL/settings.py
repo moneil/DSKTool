@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 try:
     import django_heroku
+    print("\ndjango_heroku imported")
 except:
-    print("django_heroku not imported")
+    print("\ndjango_heroku not imported")
     herokuAvailable = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 try:
-    print("using config.py...")
+    print("\nSETTINGS.py: using config.py...")
     from config import adict
 
     # SECURITY WARNING: keep the secret key used in production secret!
@@ -34,9 +35,17 @@ try:
     #ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.ngrok.io''.herokuapp.com','[::1]']
     ALLOWED_HOSTS = adict['django_allowed_hosts'].split(" ")
 
+    print(f"SETTINGS.py: config: SECRET_KEY: [ {SECRET_KEY} ]")
+    print(f"SETTINGS.py: config: SECRET_KEY: [ {ALLOWED_HOSTS} ]\n")
+
 except: #no config file...load from env
+    print("\nSETTINGS.py: using env vars ...")
+
     SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
     ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
+    print(f"SETTINGS.py: env vars: SECRET_KEY: [ {SECRET_KEY} ]")
+    print(f"SETTINGS.py: env vars: SECRET_KEY: [ {ALLOWED_HOSTS} ]\n")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!

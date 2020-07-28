@@ -4,7 +4,7 @@ services:
     
     DSKTOOL:
         container_name: DSKTOOL
-        image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:1.0
+        image: blackboardhub.ddns.net/bbdn/oscelot-dsktool:1.0.1
         ports:
             - "8000:8000"
         networks:
