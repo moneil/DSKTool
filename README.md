@@ -1,5 +1,7 @@
 # OSCELOT DSKTOOL
 
+NOTE: THIS PROJECT IS NOT PRODUCTION READY. THIS NOTICE WILL BE REMOVED WHEN THE PROJECT IS COMPLETE. (Thank you!)
+
 This project is a Django/Python and Learn REST replacement for the Original York DSK Building Block for Learn.
 
 This tool may be run on your desktop, on a remote server, or in the cloud on a PaaS of your choosing.
