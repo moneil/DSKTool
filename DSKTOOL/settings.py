@@ -36,7 +36,7 @@ try:
     ALLOWED_HOSTS = adict['django_allowed_hosts'].split(" ")
 
     print(f"SETTINGS.py: config: SECRET_KEY: [ {SECRET_KEY} ]")
-    print(f"SETTINGS.py: config: SECRET_KEY: [ {ALLOWED_HOSTS} ]\n")
+    print(f"SETTINGS.py: config: ALLOWED_HOSTS: [ {ALLOWED_HOSTS} ]\n")
 
 except: #no config file...load from env
     print("\nSETTINGS.py: using env vars ...")
