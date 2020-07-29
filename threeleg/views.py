@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.urls import reverse
 import bbrest
 from bbrest import BbRest
@@ -420,7 +421,7 @@ def get_auth_code(request):
     absolute_redirect_uri = f"https://{request.get_host()}{redirect_uri}"
     state = str(uuid.uuid4())
     request.session['state'] = state
-    authcodeurl = bb.get_auth_url(redirect_uri=absolute_redirect_uri, state=state)
+    authcodeurl = bb.get_auth_url(scope='read write', redirect_uri=absolute_redirect_uri, state=state)
 
     print(f"AUTHCODEURL:{authcodeurl}")
     return HttpResponseRedirect(authcodeurl)
@@ -428,10 +429,28 @@ def get_auth_code(request):
 def isup(request):
     return render(request, 'isup.html')
 
+def logoutUser(request):
+    print(f"VIEWS: LogoutUser: Site domain: {request.META['HTTP_HOST']}")
+    site_domain = request.META['HTTP_HOST']
+    response = HttpResponse("Cookies Cleared")
+    if (request.COOKIES.get(site_domain) is not None):
+        #response = HttpResponse("Cookies Cleared")
+        print("VIEWS: LogoutUser: clearing cookies")
+        response = redirect('/threeleg/learnlogout')
+        response.delete_cookie(site_domain)
+    else:
+        print("VIEWS: LogoutUser: no cookies to clear")
+        response = redirect('/threeleg/learnlogout')
+
+    #response = HttpResponse("We are not tracking you.")
+    return response
+
 def learnlogout(request):
     print("VIEWS.py: index request: Flushing session and redirecting to Learn for logout")
     request.session.flush()
+
     return HttpResponseRedirect(f"https://{LEARNFQDN}/webapps/login?action=logout")
+
 
 def notauthorized(request):
     context = {}
