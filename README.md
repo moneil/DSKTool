@@ -10,15 +10,53 @@ This tool may be run on your desktop, on a remote server, or in the cloud on a P
 
 The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted based on Learn account privileges (only Users with Admin accounts may post record updates).
 
-**Note**: This is an open source community project and *is not supported or sponsored by Blackboard Inc.*. Pull requests welcome! Make a fork and share your work back to the project.
+**Note**: Your Learn user role must have the following privileges in order to use this tool:
+
+GET USERS:
+user.VIEW
+system.user.properties.MODIFY
+system.useradmin.generic.VIEW
+system.user.VIEW
+
+GET COURSES:
+system.course.VIEW
+course.configure-properties.EXECUTE
+system.course.properties.MODIFY
+
+GET ENROLLMENTS:
+
+PATCH USERS:
+system.user.properties.MODIFY
+system.user.MODIFY
+system.user.availability.MODIFY
+
+PATCH COURSES:
+system.course.properties.MODIFY
+org.properties.MODIFY
+course.configure-properties.EXECUTE
+course.availability.MODIFY
+
+PATCH ENROLLMENTS
+
+
+
+
+This is an open source community project and *is not supported or sponsored by Blackboard Inc.*. Pull requests welcome! Make a fork and share your work back to the project.
 
 ## Release Notes
+### v1.0.2 (07/28/2020)
+<ul>
+  <li>Entire site requires 3LO </li>
+  <li>Strip trailing spaces from submited data</li>
+  <li>Heroku work in progress</li>
+  <li>Docker image updated to 1.0.2</li>
+</ul>
+
 ### v1.0.1 (07/27/2020)
 <ul>
   <li> Fixed django issues which were preventing correct loading </li>
   <li> Updated installation notes</li>
 </ul>
-
 
 ### v1.0 (07/26/2020)
 <ul>
@@ -32,6 +70,7 @@ The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted 
     <li>clean up/simplify project layout</li>
     <li>add search and update for multiple records</li>
     <li>add logging support</li>
+    <li>analyze ditching Django for Flask</li>
     <li>add date timeboxing</li>
   </ul>
 <hr>
@@ -45,7 +84,7 @@ You ***must*** have registered an application in your Developer Portal ([https:/
 NOTE: Make certain to store your Key and Secret as those will be required when you install the application.
 
 ### Learn
-1. On your Learn instance create a user 'dsktooluser' and assign them a low, to no, privileged Institution role - I used "staff" - you may create a specific role if you choose. Do not assign a System Role. 
+1. On your Learn instance (the same instance used in the below config steps) create a user 'dsktooluser' and assign them a low, to no, privileged Institution role - I used "staff" - you may create a specific role if you choose. Do not assign a System Role. 
 2. Navigate to the System Admin page and select the REST API Integrations link.
 3. Enter your Application Id into the Application Id field.
 2. Set the REST integration user to your 'dsktooluser'.
@@ -125,7 +164,8 @@ Docker is likely the easiest installation at this time as it does not require an
   If you changed the file name you would use `$ docker-compose -f <your filename> up -d`
   
 1. Open your Docker Desktop Dashboard to inspect that the DSKTOOL app is running 
-1. Browse to https URL provided by ngrok and click the whoami link to view the https site and ensure the site is functioning.
+2. Log out of Learn
+1. Browse to https URL provided by ngrok and click the whoami link to view the https site and ensure the site is functioning. You should be asked to login to the configured Learn instance.
 
 #### Oopsies
 If for some reason you get an error loading the site there are a few things to check:
@@ -156,11 +196,16 @@ Rerun docker-compose.yaml to pull the new image and deploy the container.
 
 
 ### Hosted
-You may also install DSKTOOL on you local desktop system or remote server. You may leverage 
+You may also install DSKTOOL on your local desktop system or remote server. It is recommended that you use a python virtual environment such as pyenv.
+
+#### Clone the repo
+1. Change to your development directory
+2. Clone the repository:
+`git clone https://github.com/moneil/DSKTool dsktool.git`
 
 #### Install Python 3.8.x
 
-See https://docs.python.org/3.7/using/index.html
+See https://docs.python.org/3.8/using/index.html
 
 #### Install Django 3.x
 
@@ -168,21 +213,43 @@ See https://docs.djangoproject.com/en/3.0/topics/install/
 
 #### config_template.py
 
+Use https://djskgen.herokuapp.com to generate a django_secret_key
+
 Copy `config_template.py` to `config.py` and fill in your information:
 
 ```
 adict = {
     "learn_rest_fqdn" : "your.learnserver.net",
     "learn_rest_key" : "Your REST API KEY GOES HERE NOT Mine",
-    "learn_rest_secret" : "Your REST API SECRET GOES HEREer",
-}
+    "learn_rest_secret" : "Your REST API SECRET GOES HERE",
+    "django_secret_key" : 'a secret key from the above URL',
+    "django_allowed_hosts" : "127.0.0.1 localhost .ngrok.io .herokuapp.com [::1]"
+    }
 
 ```
 
-* **learn_rest_fqdn** should be set to the FQDN of your Blackboard Learn instance. Be sure to avoid the request scheme, i.e. use `mylearn.blackboard.edu`
+* **learn\_rest\_fqdn** should be set to the FQDN of your Blackboard Learn instance. E.g. use `mylearn.blackboard.edu`
 
 
 #### To Run
+You should have TLS setup - follow the above ngrok installation or set up your own cert by:
+`$ pip install django-extensions`
 
-* **After cloning from github** run `pip install -r requirements.txt` . Next run `python manage.py migrate` to apply the migrations. And last, start the server with `python manage.py runserver`
+`$ pip install Werkzeug`
+
+`$ pip install pyOpenSSL`
+
+`pip freeze -r requirements.txt`
+
+Generate your cert - see: https://devcenter.heroku.com/articles/ssl-certificate-self 
+
+or use a purchased cert
+
+Finally add 'django_extensions' to INSTALLED\_APPS in the settings.py
+
+After you create and edit your config.py file in the next step you may then run: python manage.py runserver_plus --cert certname
+
+* **If Using ngrok** run `pip install -r requirements.txt` . Next run `python manage.py migrate` to apply the migrations. And last, start the server with `python manage.py runserver`
+* **If Using your own cert** run `$ python manage.py runserver_plus --cert certname`
+
 
