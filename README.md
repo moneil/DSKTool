@@ -10,40 +10,21 @@ This tool may be run on your desktop, on a remote server, or in the cloud on a P
 
 The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted based on Learn account privileges (only Users with Admin accounts may post record updates).
 
-**Note**: Your Learn user role must have the following privileges in order to use this tool:
-
-GET USERS:
-user.VIEW
-system.user.properties.MODIFY
-system.useradmin.generic.VIEW
-system.user.VIEW
-
-GET COURSES:
-system.course.VIEW
-course.configure-properties.EXECUTE
-system.course.properties.MODIFY
-
-GET ENROLLMENTS:
-
-PATCH USERS:
-system.user.properties.MODIFY
-system.user.MODIFY
-system.user.availability.MODIFY
-
-PATCH COURSES:
-system.course.properties.MODIFY
-org.properties.MODIFY
-course.configure-properties.EXECUTE
-course.availability.MODIFY
-
-PATCH ENROLLMENTS
-
-
-
-
-This is an open source community project and *is not supported or sponsored by Blackboard Inc.*. Pull requests welcome! Make a fork and share your work back to the project.
+This is an open source community project and *is not supported or sponsored by Blackboard Inc.*. If you find it of value please contribute! Pull requests welcome! Make a fork and share your work back to this project.
 
 ## Release Notes
+### v1.0.4 (07/29/2020)
+<ul>
+  <li>Delete session cookie when Learn Logout link is used.</li>
+  <li>Moved older release notes from app index page to here.</li>
+</ul>
+
+### v1.0.3 (07/29/2020)
+<ul>
+  <li>Heroku Deployable!</li>
+  <li>3LO required on all pages</li>
+</ul>
+
 ### v1.0.2 (07/28/2020)
 <ul>
   <li>Entire site requires 3LO </li>
