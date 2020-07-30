@@ -451,7 +451,6 @@ def learnlogout(request):
 
     return HttpResponseRedirect(f"https://{LEARNFQDN}/webapps/login?action=logout")
 
-
 def notauthorized(request):
     context = {}
     return render(request, 'notauthorized.html', context=context )
