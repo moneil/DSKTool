@@ -1,12 +1,8 @@
 # OSCELOT DSKTOOL
 
-NOTE: THIS PROJECT IS NOT PRODUCTION READY. FEEL FREE TO GIVE IT A SPIN AND HELP ME IMPROVE/FIX IT. :-)
+This project is a Django/Python and Learn REST replacement for the Original York DSK Building Block for Learn. This tool may be run on your desktop, on a remote server, or in the cloud on a PaaS of your choosing.
 
-THIS NOTICE WILL BE REMOVED WHEN THE PROJECT IS COMPLETE. (Thank you!)
-
-This project is a Django/Python and Learn REST replacement for the Original York DSK Building Block for Learn.
-
-This tool may be run on your desktop, on a remote server, or in the cloud on a PaaS of your choosing.
+If you are looking for a simpler 'one click' deployment solution over [here](https://github.com/moneil/OSCELOT-DSKTOOL-for-HEROKU) is the [OSCELOT-DSKTOOL-for-HEROKU](https://github.com/moneil/OSCELOT-DSKTOOL-for-HEROKU) project.
 
 The DSKTOOL uses 3LO and as such requires a Learn account and use is restricted based on Learn account privileges (only Users with Admin accounts may post record updates).
 
