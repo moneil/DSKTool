@@ -31,7 +31,7 @@ try:
     from config import adict
 
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = adict['django_secret_key']
+    SECRET_KEY = adict['django_secret_key'].strip("'")
     #ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.ngrok.io''.herokuapp.com','[::1]']
     ALLOWED_HOSTS = adict['django_allowed_hosts'].split(" ")
 
@@ -41,7 +41,7 @@ try:
 except: #no config file...load from env
     print("\nSETTINGS.py: using env vars ...")
 
-    SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+    SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY").strip("'")
     ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
     print(f"SETTINGS.py: env vars: SECRET_KEY: [ {SECRET_KEY} ]")
