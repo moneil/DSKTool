@@ -2,9 +2,7 @@
 
 This project is deprecated and should no longer be used. Please use the simpler 'one click' deployment solution over [here](https://github.com/moneil/OSCELOT-DSKTOOL-for-HEROKU) is the [OSCELOT-DSKTOOL-for-HEROKU](https://github.com/moneil/OSCELOT-DSKTOOL-for-HEROKU) project.
 
-If you are looking for a simpler 'one click' deployment solution over [here](https://github.com/moneil/OSCELOT-DSKTOOL-for-HEROKU) is the [OSCELOT-DSKTOOL-for-HEROKU](https://github.com/moneil/OSCELOT-DSKTOOL-for-HEROKU) project.
-
-The DSKTOOL uses 3LO and as such requires a Blackboard Learn account and use is restricted based on Learn account privileges (only Users with Admin accounts may post record updates).
+This project will be deleted on July 4th 2021.
 
 This is an open source community project and *is not supported or sponsored by Blackboard Inc.*. If you find it of value please contribute! Pull requests welcome! Make a fork and share your work back to this project.
 
